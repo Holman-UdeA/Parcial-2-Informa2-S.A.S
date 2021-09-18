@@ -1,0 +1,2 @@
+Se realiza el primer commit luego de haber visto la repetición de la clase de explicación para afianzar algunos conceptos tratados en esta y se procede a realizar
+el razonamiento para la solución del problema del sub o sobre muestreo de las imágenes.
