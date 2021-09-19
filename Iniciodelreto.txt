@@ -2,3 +2,6 @@ Se realiza el primer commit luego de haber visto la repetición de la clase de e
 el razonamiento para la solución del problema del sub o sobre muestreo de las imágenes.
 
 En este dia procedí a buscar informacion sobre el procesamiento digital de imagenes para tener una idea mas a fondo de como funciona una imagen y como es su procesamiento computacional, y de esta manera poder idear una logica de programacion para cambiar el tamaño de las imagenes sin usar librerias propias de Qt.
+
+Luego de investigar un poco la mejor manera, hasta ahora, en la que puedo modificar el tamañaño de una imagen parece ser el de realizar un muestreo cada X pixeles y de 
+estos tomar un valor RGB promedio, X sera el resultado de dividir el tamaño original de la imagen entre el tamaño resultante si TamO > TamR
