@@ -5,3 +5,5 @@ En este dia procedí a buscar informacion sobre el procesamiento digital de imag
 
 Luego de investigar un poco la mejor manera, hasta ahora, en la que puedo modificar el tamañaño de una imagen parece ser el de realizar un muestreo cada X pixeles y de 
 estos tomar un valor RGB promedio, X sera el resultado de dividir el tamaño original de la imagen entre el tamaño resultante si TamO > TamR
+
+El dia de ayer (domingo) realicé una busqueda mas a fondo sobre el procesamiento de imagenes y me di cuenta que con el metodo que habia pensado se podria perder demasiada informacion de las imagenes ya que solo se iba a sacar un valor RGB promedio por lo tanto si habia mucha variedad en los colores de la seccion seleccionada se iba a modificar mucho el color original, así que pensaré en otra alternativa.
