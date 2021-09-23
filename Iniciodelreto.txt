@@ -11,3 +11,5 @@ El dia de ayer (domingo) realicé una busqueda mas a fondo sobre el procesamient
 Creación del proyecto de latex, ya hice el primer punto, análisis del problema y consideraciones, además estoy trabajando en el segundo punto que trata sobre el esquema donde se describen las tareas o pasos a seguir para la solución del problema.
 
 Realice un borrador del texto de latex en word esto con la intencion de hacer mas facil la revision de la ortografia y gramatica, el dia de mañana procederé a pasar este texto a Latex para hacer la entrega de la primera parte la cual es el informe sobre el análisis y diseño de la solucion planteada.
+
+Hoy estuve leyendo más sobre los métodos para hacer submuestreo y sobremuestreo para comprender mas fondo la lógica de estos para iniciar a codificar, además estoy buscando en diferentes fuentes para tratar de encontrar otro metodo que depronto sea más optimo para realizar estas funciones.
