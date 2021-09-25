@@ -1,0 +1,30 @@
+#include <Adafruit_NeoPixel.h>
+
+#define LED_PIN 2
+#define LED_COUNT 144
+
+Adafruit_NeoPixel Leds(LED_COUNT, LED_PIN, NEO_GRB + NEO_KHZ800);
+
+void setup()
+{
+  Leds.begin();
+  int MatrizImg[LED_COUNT][3]= {{255, 255, 255},
+                                {255, 255, 255},
+                                {255, 255, 255},
+                                {255, 255, 255},
+                                {255, 255, 255},
+                                {184, 213, 35},
+                                {209, 222, 21},
+                                {236, 231, 9},
+                                {254, 232, 1},};
+  
+  for(int i=0; i<LED_COUNT; i++){
+    Leds.setPixelColor(i, MatrizImg[i][0], MatrizImg[i][1], MatrizImg[i][2]);
+  }
+  Leds.show();
+}
+
+void loop()
+{
+  
+}
