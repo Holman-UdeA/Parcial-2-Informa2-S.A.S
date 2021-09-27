@@ -1,5 +1,6 @@
 #include <iostream>
 #include <QImage>
+#include <metodos.h>
 
 using namespace std;
 
@@ -18,6 +19,7 @@ int main()
         Ancho = Imagen.width();
         Alto = Imagen.height();
         Dimension = Ancho*Alto;
+        Metodos IM(Dimension, Ancho, Alto);
         MatrizImg = new int*[Dimension];
         for(unsigned long FilaM=0; FilaM<Dimension; FilaM++){
             MatrizImg[FilaM] = new int[3];
@@ -38,6 +40,7 @@ int main()
         if(Dimension != unsigned(Ancho2*Alto2)){ //Se valida que no tenga ya el tamaño deseado.
             if(Ancho > Ancho2){
                 //Se realiza Submuestreo a las columnas.
+                MatrizImgC = IM.SubMuestreoAncho(MatrizImg);
             }
             else {
                 //Se realiza Sobremuestreo a las columnas.

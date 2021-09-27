@@ -52,8 +52,10 @@ OBJECTS_DIR   = ./
 
 ####### Files
 
-SOURCES       = ../Parcial_2_QT/main.cpp 
-OBJECTS       = main.o
+SOURCES       = ../Parcial_2_QT/main.cpp \
+		../Parcial_2_QT/metodos.cpp 
+OBJECTS       = main.o \
+		metodos.o
 DIST          = /home/holman/Qt/5.14.2/gcc_64/mkspecs/features/spec_pre.prf \
 		/home/holman/Qt/5.14.2/gcc_64/mkspecs/common/unix.conf \
 		/home/holman/Qt/5.14.2/gcc_64/mkspecs/common/linux.conf \
@@ -220,6 +222,7 @@ DIST          = /home/holman/Qt/5.14.2/gcc_64/mkspecs/features/spec_pre.prf \
 		/home/holman/Qt/5.14.2/gcc_64/mkspecs/features/qt_config.prf \
 		/home/holman/Qt/5.14.2/gcc_64/mkspecs/linux-g++/qmake.conf \
 		/home/holman/Qt/5.14.2/gcc_64/mkspecs/features/spec_post.prf \
+		../Parcial_2_QT/.qmake.stash \
 		/home/holman/Qt/5.14.2/gcc_64/mkspecs/features/exclusive_builds.prf \
 		/home/holman/Qt/5.14.2/gcc_64/mkspecs/features/toolchain.prf \
 		/home/holman/Qt/5.14.2/gcc_64/mkspecs/features/default_pre.prf \
@@ -239,7 +242,8 @@ DIST          = /home/holman/Qt/5.14.2/gcc_64/mkspecs/features/spec_pre.prf \
 		/home/holman/Qt/5.14.2/gcc_64/mkspecs/features/exceptions.prf \
 		/home/holman/Qt/5.14.2/gcc_64/mkspecs/features/yacc.prf \
 		/home/holman/Qt/5.14.2/gcc_64/mkspecs/features/lex.prf \
-		../Parcial_2_QT/Parcial_2_QT.pro  ../Parcial_2_QT/main.cpp
+		../Parcial_2_QT/Parcial_2_QT.pro ../Parcial_2_QT/metodos.h ../Parcial_2_QT/main.cpp \
+		../Parcial_2_QT/metodos.cpp
 QMAKE_TARGET  = Parcial_2_QT
 DESTDIR       = 
 TARGET        = Parcial_2_QT
@@ -417,6 +421,7 @@ Makefile: ../Parcial_2_QT/Parcial_2_QT.pro /home/holman/Qt/5.14.2/gcc_64/mkspecs
 		/home/holman/Qt/5.14.2/gcc_64/mkspecs/features/qt_config.prf \
 		/home/holman/Qt/5.14.2/gcc_64/mkspecs/linux-g++/qmake.conf \
 		/home/holman/Qt/5.14.2/gcc_64/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		/home/holman/Qt/5.14.2/gcc_64/mkspecs/features/exclusive_builds.prf \
 		/home/holman/Qt/5.14.2/gcc_64/mkspecs/features/toolchain.prf \
 		/home/holman/Qt/5.14.2/gcc_64/mkspecs/features/default_pre.prf \
@@ -604,6 +609,7 @@ Makefile: ../Parcial_2_QT/Parcial_2_QT.pro /home/holman/Qt/5.14.2/gcc_64/mkspecs
 /home/holman/Qt/5.14.2/gcc_64/mkspecs/features/qt_config.prf:
 /home/holman/Qt/5.14.2/gcc_64/mkspecs/linux-g++/qmake.conf:
 /home/holman/Qt/5.14.2/gcc_64/mkspecs/features/spec_post.prf:
+.qmake.stash:
 /home/holman/Qt/5.14.2/gcc_64/mkspecs/features/exclusive_builds.prf:
 /home/holman/Qt/5.14.2/gcc_64/mkspecs/features/toolchain.prf:
 /home/holman/Qt/5.14.2/gcc_64/mkspecs/features/default_pre.prf:
@@ -639,7 +645,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /home/holman/Qt/5.14.2/gcc_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../Parcial_2_QT/main.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../Parcial_2_QT/metodos.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../Parcial_2_QT/main.cpp ../Parcial_2_QT/metodos.cpp $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -687,8 +694,85 @@ compiler_clean: compiler_moc_predefs_clean
 
 ####### Compile
 
-main.o: ../Parcial_2_QT/main.cpp 
+main.o: ../Parcial_2_QT/main.cpp /home/holman/Qt/5.14.2/gcc_64/include/QtGui/QImage \
+		/home/holman/Qt/5.14.2/gcc_64/include/QtGui/qimage.h \
+		/home/holman/Qt/5.14.2/gcc_64/include/QtGui/qtguiglobal.h \
+		/home/holman/Qt/5.14.2/gcc_64/include/QtCore/qglobal.h \
+		/home/holman/Qt/5.14.2/gcc_64/include/QtCore/qconfig-bootstrapped.h \
+		/home/holman/Qt/5.14.2/gcc_64/include/QtCore/qconfig.h \
+		/home/holman/Qt/5.14.2/gcc_64/include/QtCore/qtcore-config.h \
+		/home/holman/Qt/5.14.2/gcc_64/include/QtCore/qsystemdetection.h \
+		/home/holman/Qt/5.14.2/gcc_64/include/QtCore/qprocessordetection.h \
+		/home/holman/Qt/5.14.2/gcc_64/include/QtCore/qcompilerdetection.h \
+		/home/holman/Qt/5.14.2/gcc_64/include/QtCore/qtypeinfo.h \
+		/home/holman/Qt/5.14.2/gcc_64/include/QtCore/qsysinfo.h \
+		/home/holman/Qt/5.14.2/gcc_64/include/QtCore/qlogging.h \
+		/home/holman/Qt/5.14.2/gcc_64/include/QtCore/qflags.h \
+		/home/holman/Qt/5.14.2/gcc_64/include/QtCore/qatomic.h \
+		/home/holman/Qt/5.14.2/gcc_64/include/QtCore/qbasicatomic.h \
+		/home/holman/Qt/5.14.2/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		/home/holman/Qt/5.14.2/gcc_64/include/QtCore/qgenericatomic.h \
+		/home/holman/Qt/5.14.2/gcc_64/include/QtCore/qatomic_cxx11.h \
+		/home/holman/Qt/5.14.2/gcc_64/include/QtCore/qatomic_msvc.h \
+		/home/holman/Qt/5.14.2/gcc_64/include/QtCore/qglobalstatic.h \
+		/home/holman/Qt/5.14.2/gcc_64/include/QtCore/qmutex.h \
+		/home/holman/Qt/5.14.2/gcc_64/include/QtCore/qnumeric.h \
+		/home/holman/Qt/5.14.2/gcc_64/include/QtCore/qversiontagging.h \
+		/home/holman/Qt/5.14.2/gcc_64/include/QtGui/qtgui-config.h \
+		/home/holman/Qt/5.14.2/gcc_64/include/QtGui/qcolor.h \
+		/home/holman/Qt/5.14.2/gcc_64/include/QtGui/qrgb.h \
+		/home/holman/Qt/5.14.2/gcc_64/include/QtCore/qnamespace.h \
+		/home/holman/Qt/5.14.2/gcc_64/include/QtCore/qstringlist.h \
+		/home/holman/Qt/5.14.2/gcc_64/include/QtCore/qlist.h \
+		/home/holman/Qt/5.14.2/gcc_64/include/QtCore/qalgorithms.h \
+		/home/holman/Qt/5.14.2/gcc_64/include/QtCore/qiterator.h \
+		/home/holman/Qt/5.14.2/gcc_64/include/QtCore/qrefcount.h \
+		/home/holman/Qt/5.14.2/gcc_64/include/QtCore/qarraydata.h \
+		/home/holman/Qt/5.14.2/gcc_64/include/QtCore/qhashfunctions.h \
+		/home/holman/Qt/5.14.2/gcc_64/include/QtCore/qstring.h \
+		/home/holman/Qt/5.14.2/gcc_64/include/QtCore/qchar.h \
+		/home/holman/Qt/5.14.2/gcc_64/include/QtCore/qbytearray.h \
+		/home/holman/Qt/5.14.2/gcc_64/include/QtCore/qstringliteral.h \
+		/home/holman/Qt/5.14.2/gcc_64/include/QtCore/qstringalgorithms.h \
+		/home/holman/Qt/5.14.2/gcc_64/include/QtCore/qstringview.h \
+		/home/holman/Qt/5.14.2/gcc_64/include/QtCore/qstringbuilder.h \
+		/home/holman/Qt/5.14.2/gcc_64/include/QtCore/qpair.h \
+		/home/holman/Qt/5.14.2/gcc_64/include/QtCore/qvector.h \
+		/home/holman/Qt/5.14.2/gcc_64/include/QtCore/qcontainertools_impl.h \
+		/home/holman/Qt/5.14.2/gcc_64/include/QtCore/qpoint.h \
+		/home/holman/Qt/5.14.2/gcc_64/include/QtCore/qbytearraylist.h \
+		/home/holman/Qt/5.14.2/gcc_64/include/QtCore/qregexp.h \
+		/home/holman/Qt/5.14.2/gcc_64/include/QtCore/qstringmatcher.h \
+		/home/holman/Qt/5.14.2/gcc_64/include/QtGui/qrgba64.h \
+		/home/holman/Qt/5.14.2/gcc_64/include/QtGui/qpaintdevice.h \
+		/home/holman/Qt/5.14.2/gcc_64/include/QtGui/qwindowdefs.h \
+		/home/holman/Qt/5.14.2/gcc_64/include/QtCore/qobjectdefs.h \
+		/home/holman/Qt/5.14.2/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		/home/holman/Qt/5.14.2/gcc_64/include/QtGui/qwindowdefs_win.h \
+		/home/holman/Qt/5.14.2/gcc_64/include/QtCore/qrect.h \
+		/home/holman/Qt/5.14.2/gcc_64/include/QtCore/qmargins.h \
+		/home/holman/Qt/5.14.2/gcc_64/include/QtCore/qsize.h \
+		/home/holman/Qt/5.14.2/gcc_64/include/QtGui/qpixelformat.h \
+		/home/holman/Qt/5.14.2/gcc_64/include/QtGui/qtransform.h \
+		/home/holman/Qt/5.14.2/gcc_64/include/QtGui/qmatrix.h \
+		/home/holman/Qt/5.14.2/gcc_64/include/QtGui/qpolygon.h \
+		/home/holman/Qt/5.14.2/gcc_64/include/QtGui/qregion.h \
+		/home/holman/Qt/5.14.2/gcc_64/include/QtCore/qdatastream.h \
+		/home/holman/Qt/5.14.2/gcc_64/include/QtCore/qscopedpointer.h \
+		/home/holman/Qt/5.14.2/gcc_64/include/QtCore/qiodevice.h \
+		/home/holman/Qt/5.14.2/gcc_64/include/QtCore/qobject.h \
+		/home/holman/Qt/5.14.2/gcc_64/include/QtCore/qcoreevent.h \
+		/home/holman/Qt/5.14.2/gcc_64/include/QtCore/qmetatype.h \
+		/home/holman/Qt/5.14.2/gcc_64/include/QtCore/qvarlengtharray.h \
+		/home/holman/Qt/5.14.2/gcc_64/include/QtCore/qcontainerfwd.h \
+		/home/holman/Qt/5.14.2/gcc_64/include/QtCore/qobject_impl.h \
+		/home/holman/Qt/5.14.2/gcc_64/include/QtCore/qline.h \
+		/home/holman/Qt/5.14.2/gcc_64/include/QtGui/qpainterpath.h \
+		../Parcial_2_QT/metodos.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../Parcial_2_QT/main.cpp
+
+metodos.o: ../Parcial_2_QT/metodos.cpp ../Parcial_2_QT/metodos.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o metodos.o ../Parcial_2_QT/metodos.cpp
 
 ####### Install
 
