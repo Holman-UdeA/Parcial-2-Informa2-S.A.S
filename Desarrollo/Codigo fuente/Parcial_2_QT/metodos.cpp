@@ -113,4 +113,177 @@ int **Metodos::SubMuestreoAlto(int **MatrizImagen)
     for(int Fila=0; Fila<(AnchoFinal*AltoFinal); Fila++){
         MatrizImagenCodificada[Fila] = new int[3];
     }
+
+    int CantidadPixeles, CantidadPixeles2, Counter = 0, Sobrante, Sobrante2;
+    int PromedioR, PromedioG, PromedioB, Fila = 0;
+    unsigned long SumaR = 0, SumaG = 0, SumaB = 0;
+    bool Final = false;
+    CantidadPixeles = AltoImgO / AltoFinal;
+
+    if(AltoImgO%AltoFinal == 0){
+        for(unsigned long i=0; i<unsigned(AnchoFinal*AltoImgO); i++){
+            if((i%AnchoFinal) == 0 && i != 0){
+                if(((i - AnchoFinal) + (AnchoFinal * CantidadPixeles)) >= unsigned(AnchoFinal*AltoImgO)){
+                    Final = true;
+                }
+                else {
+                    i = (i - AnchoFinal) + (AnchoFinal * CantidadPixeles);
+                }
+            }
+            if(Final == false){
+                Counter = i;
+                for(int a=0; a<CantidadPixeles; a++){
+                    if(a==0){
+                        SumaR += MatrizImagen[(i+AnchoFinal)*a+i][0];
+                        SumaG += MatrizImagen[(i+AnchoFinal)*a+i][1];
+                        SumaB += MatrizImagen[(i+AnchoFinal)*a+i][2];
+                    }
+                    else {
+                        SumaR += MatrizImagen[(Counter+AnchoFinal)][0];
+                        SumaG += MatrizImagen[(Counter+AnchoFinal)][1];
+                        SumaB += MatrizImagen[(Counter+AnchoFinal)][2];
+                        Counter = Counter+AnchoFinal;
+                    }
+                }
+                PromedioR = SumaR / CantidadPixeles;
+                PromedioG = SumaG / CantidadPixeles;
+                PromedioB = SumaB / CantidadPixeles;
+                MatrizImagenCodificada[Fila][0] = PromedioR;
+                MatrizImagenCodificada[Fila][1] = PromedioG;
+                MatrizImagenCodificada[Fila][2] = PromedioB;
+                Fila++;
+                SumaR = 0;
+                SumaG = 0;
+                SumaB = 0;
+                PromedioR = 0;
+                PromedioG = 0;
+                PromedioB = 0;
+            }
+        }
+    }
+    else {
+        Sobrante = AltoImgO%AltoFinal;
+        CantidadPixeles2 = CantidadPixeles + 1;
+        Sobrante2 = Sobrante - 1;
+        for(unsigned long i=0; i<unsigned(AnchoFinal*AltoImgO); i++){
+            if((i%AnchoFinal) == 0 && i != 0){
+                if(((i - AnchoFinal) + (AnchoFinal * CantidadPixeles2)) >= unsigned(AnchoFinal*AltoImgO)){
+                    Final = true;
+                }
+                else {
+                    i = (i - AnchoFinal) + (AnchoFinal * CantidadPixeles2);
+                    CantidadPixeles2 = CantidadPixeles;
+                    if(Sobrante2 > 0){
+                        if(Sobrante2 > Sobrante/2){
+                            CantidadPixeles2 += 1;
+                            Sobrante2--;
+                        }
+                        else {
+                            if((i/AnchoFinal) == unsigned(AltoImgO - (CantidadPixeles+1)*Sobrante2)){
+                                CantidadPixeles2 += 1;
+                                Sobrante2--;
+                            }
+                            else {
+                                CantidadPixeles2 = CantidadPixeles;
+                            }
+                        }
+                    }
+                }
+            }
+            if(Final == false){
+                Counter = i;
+                for(int a=0; a<CantidadPixeles2; a++){
+                    if(a==0){
+                        SumaR += MatrizImagen[(i+AnchoFinal)*a+i][0];
+                        SumaG += MatrizImagen[(i+AnchoFinal)*a+i][1];
+                        SumaB += MatrizImagen[(i+AnchoFinal)*a+i][2];
+                    }
+                    else {
+                        SumaR += MatrizImagen[(Counter+AnchoFinal)][0];
+                        SumaG += MatrizImagen[(Counter+AnchoFinal)][1];
+                        SumaB += MatrizImagen[(Counter+AnchoFinal)][2];
+                        Counter = Counter+AnchoFinal;
+                    }
+                }
+                PromedioR = SumaR / CantidadPixeles2;
+                PromedioG = SumaG / CantidadPixeles2;
+                PromedioB = SumaB / CantidadPixeles2;
+                MatrizImagenCodificada[Fila][0] = PromedioR;
+                MatrizImagenCodificada[Fila][1] = PromedioG;
+                MatrizImagenCodificada[Fila][2] = PromedioB;
+                Fila++;
+                SumaR = 0;
+                SumaG = 0;
+                SumaB = 0;
+                PromedioR = 0;
+                PromedioG = 0;
+                PromedioB = 0;
+            }
+        }
+    }
+    return MatrizImagenCodificada;
+}
+
+int **Metodos::SobreMuestreoAncho(int **MatrizImagen)
+{
+    MatrizImagenCodificada = new int*[AnchoFinal*AltoImgO];
+    for(int Fila=0; Fila<(AnchoFinal*AltoImgO); Fila++){
+        MatrizImagenCodificada[Fila] = new int[3];
+    }
+
+    int CantidadPixeles, Counter = 0;
+    int Sobrante, Sobrante2, FilaMO = 0;
+    CantidadPixeles = AnchoFinal / AnchoImgO;
+
+    if(AnchoFinal%AnchoImgO == 0){
+        for(int i=0; i<(AnchoFinal*AltoImgO); i++){
+            if(Counter == CantidadPixeles){
+                FilaMO++;
+                Counter = 0;
+            }
+            MatrizImagenCodificada[i][0] = MatrizImagen[FilaMO][0];
+            MatrizImagenCodificada[i][1] = MatrizImagen[FilaMO][1];
+            MatrizImagenCodificada[i][2] = MatrizImagen[FilaMO][2];
+            Counter++;
+        }
+    }
+    else {
+        Sobrante = AnchoFinal % AnchoImgO;
+        Sobrante2 = Sobrante;
+        for(int i=0; i<(AnchoFinal*AltoImgO); i++){
+            if(Counter == CantidadPixeles){
+                if(Sobrante2 > 0){
+                    if(Sobrante2 > (Sobrante/2)){
+                        //Toma otro
+                        MatrizImagenCodificada[i][0] = MatrizImagen[FilaMO][0];
+                        MatrizImagenCodificada[i][1] = MatrizImagen[FilaMO][1];
+                        MatrizImagenCodificada[i][2] = MatrizImagen[FilaMO][2];
+                        Sobrante2--;
+                        i++;
+                    }
+                    else {
+                        if(((i+1)+((Sobrante2-1)*(CantidadPixeles+1))) == ((AnchoFinal*((AnchoFinal/i)+1))-1)){
+                            MatrizImagenCodificada[i][0] = MatrizImagen[FilaMO][0];
+                            MatrizImagenCodificada[i][1] = MatrizImagen[FilaMO][1];
+                            MatrizImagenCodificada[i][2] = MatrizImagen[FilaMO][2];
+                            Sobrante2--;
+                            i++;
+                        }
+                    }
+                }
+                FilaMO++;
+                Counter = 0;
+            }
+            MatrizImagenCodificada[i][0] = MatrizImagen[FilaMO][0];
+            MatrizImagenCodificada[i][1] = MatrizImagen[FilaMO][1];
+            MatrizImagenCodificada[i][2] = MatrizImagen[FilaMO][2];
+            Counter++;
+        }
+    }
+    return MatrizImagenCodificada;
+}
+
+int **Metodos::SobreMuestreoAlto(int **MatrizImagen)
+{
+
 }

@@ -48,6 +48,7 @@ int main()
             }
             else {
                 //Se realiza Sobremuestreo a las columnas.
+                MatrizImgC = IM.SobreMuestreoAncho(MatrizImg);
             }
             if(Alto > Alto2){
                 //Se realiza Soubmuestreo a las filas.
@@ -55,6 +56,7 @@ int main()
             }
             else {
                 //Se realiza Sobremuestreo a las filas.
+                MatrizImgF = IM.SobreMuestreoAlto(MatrizImgC);
             }
         }
     }
