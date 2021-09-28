@@ -9,7 +9,7 @@ public:
     int **SubMuestreoAncho(int **MatrizImagen);
 private:
     int **MatrizFilas, **MatrizImagenCodificada;
-    int AnchoFinal = 16, Altofinal = 9, AnchoImgO, AltoImgO;
+    int AnchoFinal = 16, AltoFinal = 9, AnchoImgO, AltoImgO;
     unsigned long Dimension;
 };
 

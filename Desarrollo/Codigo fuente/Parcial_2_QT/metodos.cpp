@@ -18,7 +18,7 @@ int **Metodos::SubMuestreoAncho(int **MatrizImagen)
         MatrizImagenCodificada[Fila] = new int[3];
     }
 
-    int CantidadPixeles = AnchoImgO / AnchoFinal, Counter = 0;
+    int CantidadPixeles = AnchoImgO / AnchoFinal, CantidadPixeles2, Counter = 0, Sobrante, Sobrante2;
     int PromedioR, PromedioG, PromedioB, Fila = 0;
     unsigned long SumaR = 0, SumaG = 0, SumaB = 0;
 
@@ -48,7 +48,9 @@ int **Metodos::SubMuestreoAncho(int **MatrizImagen)
         }
     }
     else {
-
+        Sobrante = AltoImgO%AltoFinal;
+        CantidadPixeles2 = CantidadPixeles;
+        Sobrante2 = Sobrante;
     }
     return MatrizImagenCodificada;
 }
