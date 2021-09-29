@@ -41,7 +41,7 @@ int main()
                 PosPixel++;
             }
         }
-        if(Dimension != unsigned(Ancho2*Alto2)){ //Se valida que no tenga ya el tamaño deseado.
+        if(Ancho2 != Ancho){ //Se valida que no tenga ya el tamaño deseado.
             if(Ancho > Ancho2){
                 //Se realiza Submuestreo a las columnas.
                 MatrizImgC = IM.SubMuestreoAncho(MatrizImg);
@@ -50,6 +50,11 @@ int main()
                 //Se realiza Sobremuestreo a las columnas.
                 MatrizImgC = IM.SobreMuestreoAncho(MatrizImg);
             }
+        }
+        else {
+            MatrizImgC = MatrizImg;
+        }
+        if(Alto2 != Alto){
             if(Alto > Alto2){
                 //Se realiza Soubmuestreo a las filas.
                 MatrizImgF = IM.SubMuestreoAlto(MatrizImgC);
@@ -58,6 +63,15 @@ int main()
                 //Se realiza Sobremuestreo a las filas.
                 MatrizImgF = IM.SobreMuestreoAlto(MatrizImgC);
             }
+        }
+        else {
+            MatrizImgF = MatrizImgC;
+        }
+        for(int Fila=0; Fila<(Ancho2*Alto2); Fila++){
+            cout << '{';
+            cout << MatrizImgF[Fila][0] << ", ";
+            cout << MatrizImgF[Fila][1] << ", ";
+            cout << MatrizImgF[Fila][2] << "}," << endl;
         }
     }
     else{

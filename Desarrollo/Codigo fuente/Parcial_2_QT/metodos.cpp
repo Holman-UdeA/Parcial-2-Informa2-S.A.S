@@ -167,7 +167,7 @@ int **Metodos::SubMuestreoAlto(int **MatrizImagen)
         Sobrante2 = Sobrante - 1;
         for(unsigned long i=0; i<unsigned(AnchoFinal*AltoImgO); i++){
             if((i%AnchoFinal) == 0 && i != 0){
-                if(((i - AnchoFinal) + (AnchoFinal * CantidadPixeles2)) >= unsigned(AnchoFinal*AltoImgO)){
+                if(((i - AnchoFinal) + (AnchoFinal * CantidadPixeles2)) >= unsigned(AnchoFinal*AltoImgO)){ //Y que sobranye > 0 sino es cantidadpixeles
                     Final = true;
                 }
                 else {
@@ -221,6 +221,7 @@ int **Metodos::SubMuestreoAlto(int **MatrizImagen)
             }
         }
     }
+
     return MatrizImagenCodificada;
 }
 
@@ -280,10 +281,71 @@ int **Metodos::SobreMuestreoAncho(int **MatrizImagen)
             Counter++;
         }
     }
-    return MatrizImagenCodificada;
+
+    return  MatrizImagenCodificada;
 }
 
 int **Metodos::SobreMuestreoAlto(int **MatrizImagen)
 {
+    MatrizImagenCodificada = new int*[(AnchoFinal*AltoFinal)];
+    for(int Fila=0; Fila<(AnchoFinal*AltoFinal); Fila++){
+        MatrizImagenCodificada[Fila] = new int[3];
+    }
 
+    int CantidadPixeles, Counter, Sobrante, Sobrante2, Fila = 0;
+    bool Final = false, Final2 = false;
+    Sobrante = AltoFinal%AltoImgO;
+    Sobrante2 = Sobrante;
+
+    if(Sobrante == 0){
+        CantidadPixeles = AltoFinal / AltoImgO;
+    }
+    else {
+        CantidadPixeles = (AltoFinal/AltoImgO) + 1;
+        Sobrante2--;
+    }
+    for(int i=0; i<(AnchoFinal*AltoFinal); i++){
+        if(i%AnchoFinal == 0 && i!= 0){
+            if(Final == true){
+                Final2 = true;
+            }
+            if((((CantidadPixeles+1)*Sobrante2)*AnchoFinal)+i == (AnchoFinal*AltoFinal)){
+                Final = true;
+            }
+            else {
+                i = (i - AnchoFinal) + (AnchoFinal * CantidadPixeles);
+            }
+            if(Sobrante2 > 0){
+                if(Sobrante2 > (Sobrante/2)){
+                    CantidadPixeles =  (AltoFinal/AltoImgO) + 1;
+                    Sobrante2--;
+                }
+                else if((i/AnchoFinal) == (AltoFinal - ((CantidadPixeles+1)*Sobrante2))){
+                    CantidadPixeles = (AltoFinal/AltoImgO) + 1;
+                    Sobrante2--;
+                }
+                else {
+                    CantidadPixeles = AltoFinal / AltoImgO;
+                }
+            }
+        }
+        if(Final2 == false){
+            Counter = i;
+            for(int a=0; a<CantidadPixeles; a++){
+                if(a==0){
+                    MatrizImagenCodificada[i][0] = MatrizImagen[Fila][0];
+                    MatrizImagenCodificada[i][1] = MatrizImagen[Fila][1];
+                    MatrizImagenCodificada[i][2] = MatrizImagen[Fila][2];
+                }
+                else {
+                    MatrizImagenCodificada[(Counter+AnchoFinal)][0] = MatrizImagen[Fila][0];
+                    MatrizImagenCodificada[(Counter+AnchoFinal)][1] = MatrizImagen[Fila][1];
+                    MatrizImagenCodificada[(Counter+AnchoFinal)][2] = MatrizImagen[Fila][2];
+                    Counter = Counter+AnchoFinal;
+                }
+            }
+            Fila++;
+        }
+    }
+    return MatrizImagenCodificada;
 }
