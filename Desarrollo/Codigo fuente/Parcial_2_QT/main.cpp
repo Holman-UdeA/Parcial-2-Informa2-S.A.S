@@ -1,5 +1,6 @@
 #include <iostream>
 #include <QImage>
+#include <fstream>
 #include <metodos.h>
 
 using namespace std;
@@ -7,6 +8,7 @@ using namespace std;
 int main()
 {
     QImage Imagen;
+    fstream Archivo ("ValorRGB.txt", fstream::out);
     int **MatrizImg, **MatrizImgC, **MatrizImgF;
     int Ancho, Alto, Ancho2 = 16, Alto2 = 9;
     unsigned long Dimension, PosPixel = 0;
@@ -68,10 +70,10 @@ int main()
             MatrizImgF = MatrizImgC;
         }
         for(int Fila=0; Fila<(Ancho2*Alto2); Fila++){
-            cout << '{';
-            cout << MatrizImgF[Fila][0] << ", ";
-            cout << MatrizImgF[Fila][1] << ", ";
-            cout << MatrizImgF[Fila][2] << "}," << endl;
+            Archivo << '{';
+            Archivo << MatrizImgF[Fila][0] << ", ";
+            Archivo << MatrizImgF[Fila][1] << ", ";
+            Archivo << MatrizImgF[Fila][2] << "}," << endl;
         }
     }
     else{
@@ -79,5 +81,6 @@ int main()
         cout << "Recuerde que la imagen debe estar guardada dentro de la carpeta directorio del programa, llamada \"Imagenes\". " << endl;
     }
 
+    Archivo.close();
     return 0;
 }
