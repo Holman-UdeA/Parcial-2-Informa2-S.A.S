@@ -70,6 +70,13 @@ int main()
             MatrizImgF = MatrizImgC;
         }
         for(int Fila=0; Fila<(Ancho2*Alto2); Fila++){
+            for(int C=0; C<3; C++){
+                if(MatrizImgF[Fila][C] > 250){
+                    MatrizImgF[Fila][C] = 250;
+                }
+            }
+        }
+        for(int Fila=0; Fila<(Ancho2*Alto2); Fila++){
             Archivo << '{';
             Archivo << MatrizImgF[Fila][0] << ", ";
             Archivo << MatrizImgF[Fila][1] << ", ";
